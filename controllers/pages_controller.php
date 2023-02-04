@@ -10,11 +10,7 @@ class PagesController extends BaseController
 
   public function home()
   {
-    $data = array(
-      'name' => 'Quoc Van',
-      'age' => 21
-    );
-    $this->render('home', $data);
+    $this->render('home');
   }
 
   public function error()
