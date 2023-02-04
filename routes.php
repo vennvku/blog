@@ -1,5 +1,3 @@
-# routes.php
-
 <?php
 $controllers = array(
   'pages' => ['home', 'error']
