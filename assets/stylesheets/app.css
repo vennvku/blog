@@ -118,6 +118,7 @@ nav ul li a:hover:after {
   border: 1px solid #ccc;
   float: left;
   margin-right: 1%;
+  margin-bottom: 20px;
 }
 
 .posts h4 {
