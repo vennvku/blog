@@ -5,6 +5,7 @@
     <title>Venn</title>
     <!----CSS link----->
     <link rel="stylesheet" href="/assets/stylesheets/app.css">
+    
   </head>
   <body>
     <div class="hero">
