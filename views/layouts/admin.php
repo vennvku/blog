@@ -10,9 +10,9 @@
 
     <div class="admin">
       <div class="left-side-bar">
-          <h3><a href="index.php?controller=admin">Home</a></h3>
+          <h3><a href="/admin">Home</a></h3>
           <ul>
-            <li><a href="index.php?controller=admin&action=insertPost">Insert</a></li>
+            <li><a href="/admin/insertPost">Insert</a></li>
           </ul>
       </div>
       <div class="content">

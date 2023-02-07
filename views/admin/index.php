@@ -3,8 +3,8 @@
 <?php foreach ($posts as $post) { ?>
     <li>
         <?= $post->title ?>
-        <a href="index.php?controller=admin&action=updatePost&id=<?=$post->id ?>">Update</a>
-        <a href="index.php?controller=admin&action=deletePost&id=<?=$post->id ?>">Delete</a>
+        <a href="admin/updatePost/<?=$post->id ?>">Update</a>
+        <a href="admin/deletePost/<?=$post->id ?>">Delete</a>
     </li>
 <?php } ?>
 </ul>

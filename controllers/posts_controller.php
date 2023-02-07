@@ -2,6 +2,8 @@
 require_once('controllers/base_controller.php');
 require_once('models/post.php');
 
+require_once('index.php');
+
 class PostsController extends BaseController
 {
   function __construct()
@@ -18,6 +20,7 @@ class PostsController extends BaseController
 
   public function showPost()
   {
+
     $post = Post::find($_GET['id']);
     $data = array('post' => $post);
     $this->render('show', $data);

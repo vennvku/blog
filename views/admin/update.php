@@ -1,4 +1,4 @@
-<form action="index.php?controller=admin&action=actionUpdatePost" method="post">
+<form action="/admin/actionUpdatePost" method="post">
     <input type="hidden" name="id" value="<?= $post->id ?>"><br>
     <label>Title:</label>
     <input type="text" name="title" value="<?= $post->title ?>"><br>

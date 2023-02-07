@@ -1,4 +1,4 @@
-<form action="index.php?controller=admin&action=actionInsertPost" method="post">
+<form action="/admin/actionInsertPost" method="post">
 
     <label>Title:</label>
     <input type="text" name="title" ><br>

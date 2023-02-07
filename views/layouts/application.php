@@ -13,7 +13,7 @@
             <img src="/assets/images/logo.png" class="logo" />
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="index.php?controller=posts">Post</a></li>
+                <li><a href="/posts">Post</a></li>
                 <li><a href="#">Service</a></li>
                 <li><a href="#">Portfolio</a></li>
                 <li><a href="#">Blog</a></li>

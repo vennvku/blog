@@ -28,13 +28,13 @@ class AdminController extends BaseController
 
     $post = Post::updatePost($_POST['id'], $_POST["title"], $_POST["content"]);
 
-    return header('Location: index.php?controller=admin');
+    return header('Location: /admin');
   }
 
   public function deletePost()
   {
     $post = Post::deletePost($_GET['id']);
-    return header('Location: index.php?controller=admin');
+    return header('Location: /admin');
   }
 
   public function insertPost()
@@ -45,7 +45,7 @@ class AdminController extends BaseController
   public function actionInsertPost()
   {
     $post = Post::insertPost($_POST['title'], $_POST['content']);
-    return header('Location: index.php?controller=admin');
+    return header('Location: /admin');
   }
 
   
