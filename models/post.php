@@ -42,15 +42,24 @@ class Post
     return null;
   }
 
-  static function updatePost($id, $title, $content)
+  static function updatePost($id, $title, $content, $fileName)
   {
+    $db = DB::getInstance();
+    $req = $db->prepare("UPDATE posts SET title = '".$title."', content = '".$content."', image = '".$fileName."' WHERE id = '".$id."'");
+    $req->execute();
 
+    return "Successfull";
+  }
+
+  static function updatePostNoImage($id, $title, $content)
+  {
     $db = DB::getInstance();
     $req = $db->prepare("UPDATE posts SET title = '".$title."', content = '".$content."' WHERE id = '".$id."'");
     $req->execute();
 
     return "Successfull";
   }
+
 
   static function deletePost($id)
   {
@@ -62,11 +71,11 @@ class Post
     return "Successfull";
   }
 
-  static function insertPost($title, $content)
+  static function insertPost($title, $content, $fileName)
   {
 
     $db = DB::getInstance();
-    $req = $db->prepare("INSERT INTO posts (title, content) VALUES ('".$title."', '".$content."') ");
+    $req = $db->prepare("INSERT INTO posts (title, content, image) VALUES ('".$title."', '".$content."', '".$fileName."') ");
     $req->execute();
 
     return "Successfull";

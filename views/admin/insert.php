@@ -2,7 +2,7 @@
     <div class="row add-post">
         <div class="col-lg-12">
 
-            <form action="/admin/actionInsertPost" method="post">
+            <form action="/admin/actionInsertPost" method="post" enctype="multipart/form-data">
                 <table>
                     <tr>
                         <td class="row-left">Title:</td>

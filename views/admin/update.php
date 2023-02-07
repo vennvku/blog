@@ -2,7 +2,7 @@
     <div class="row add-post">
         <div class="col-lg-12">
 
-            <form action="/admin/actionUpdatePost" method="post">
+            <form action="/admin/actionUpdatePost" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?= $post->id ?>"><br>
                 <table>
                     <tr>
