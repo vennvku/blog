@@ -1,11 +1,27 @@
-<form action="/admin/actionInsertPost" method="post">
+<div class="container">
+    <div class="row add-post">
+        <div class="col-lg-12">
 
-    <label>Title:</label>
-    <input type="text" name="title" ><br>
-    <label>Content:</label>
-    <input type="text" name="content" ><br>
-    <label>File:</label>
-    <input type="file" name="fileImage" ><br>
-    <button type="submit">Insert</button>
-
-</form>
+            <form action="/admin/actionInsertPost" method="post">
+                <table>
+                    <tr>
+                        <td class="row-left">Title:</td>
+                        <td><input type="text" name="title"></td>
+                    </tr>
+                    <tr>
+                        <td class="row-left">Content:</td>
+                        <td class="row-left"><textarea  type="text" name="content" ></textarea></td>
+                    </tr>
+                    <tr>
+                        <td class="row-left">File:</td>
+                        <td><input type="file" name="fileImage" ></td>
+                    </tr>
+                </table>
+                <div class="btn-action">
+                    <button class="btn btn-success" type="submit">Insert</button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>
