@@ -2,7 +2,7 @@
 $controllers = array(
   'pages' => ['home', 'error'],
   'posts' => ['index', 'showPost'],
-  'admin' => ['index', 'updatePost', 'actionUpdatePost', 'deletePost', 'insertPost', 'actionInsertPost'],
+  'admin' => ['index', 'updatePost', 'actionUpdatePost', 'deletePost', 'insertPost', 'actionInsertPost', 'actionShowPost', 'actionHidePost'],
 ); 
 
 if (!array_key_exists($controller, $controllers) || !in_array($action, $controllers[$controller])) {

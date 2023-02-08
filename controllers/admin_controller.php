@@ -124,7 +124,21 @@ class AdminController extends BaseController
       }
    }
 
-    $post = Post::insertPost($_POST['title'], $_POST['content'], $file_name);
+   $timestamp = strtotime(date("d-m-Y"));
+
+    $post = Post::insertPost($_POST['title'], $_POST['content'], $file_name, $timestamp);
+    return header('Location: /admin');
+  }
+
+  public function actionShowPost()
+  {
+    $post = Post::showPost($_GET['id']);
+    return header('Location: /admin');
+  }
+
+  public function actionHidePost()
+  {
+    $post = Post::hidePost($_GET['id']);
     return header('Location: /admin');
   }
 

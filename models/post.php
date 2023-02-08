@@ -3,17 +3,23 @@ class Post
 {
   public $id;
   public $title;
+  public $slug;
   public $content;
   public $image;
   public $view;
+  public $status;
+  public $createAt;
 
-  function __construct($id, $title, $content, $image, $view)
+  function __construct($id, $title, $slug, $content, $image, $view, $status, $createAt)
   {
     $this->id = $id;
     $this->title = $title;
+    $this->slug = $slug;
     $this->content = $content;
     $this->image = $image;
     $this->view = $view;
+    $this->status = $status;
+    $this->createAt = $createAt;
   }
 
   static function all()
@@ -23,7 +29,7 @@ class Post
     $req = $db->query('SELECT * FROM posts');
 
     foreach ($req->fetchAll() as $item) {
-      $list[] = new Post($item['id'], $item['title'], $item['content'], $item['image'], $item['view']);
+      $list[] = new Post($item['id'], $item['title'], $item['slug'], $item['content'], $item['image'], $item['view'], $item['status'], $item['createAt']);
     }
 
     return $list;
@@ -37,7 +43,7 @@ class Post
 
     $item = $req->fetch();
     if (isset($item['id'])) {
-      return new Post($item['id'], $item['title'], $item['content'], $item['image'], $item['view']);
+      return new Post($item['id'], $item['title'], $item['slug'], $item['content'], $item['image'], $item['view'], $item['status'], $item['createAt']);
     }
     return null;
   }
@@ -71,14 +77,34 @@ class Post
     return "Successfull";
   }
 
-  static function insertPost($title, $content, $fileName)
+  static function insertPost($title, $content, $fileName, $timestamp)
   {
 
     $db = DB::getInstance();
-    $req = $db->prepare("INSERT INTO posts (title, content, image) VALUES ('".$title."', '".$content."', '".$fileName."') ");
+    $req = $db->prepare("INSERT INTO posts (title, content, image, view, status, createAt) 
+                          VALUES ('".$title."', '".$content."', '".$fileName."', 0, 1, '".$timestamp."') ");
     $req->execute();
 
     return "Successfull";
   }
+
+  static function showPost($id)
+  {
+    $db = DB::getInstance();
+    $req = $db->prepare("UPDATE posts SET status = 1 WHERE id = '".$id."'");
+    $req->execute();
+
+    return "Successfull";
+  }
+
+  static function hidePost($id)
+  {
+    $db = DB::getInstance();
+    $req = $db->prepare("UPDATE posts SET status = 0 WHERE id = '".$id."'");
+    $req->execute();
+
+    return "Successfull";
+  }
+
 
 }

@@ -20,11 +20,18 @@
                 <a href="#" class="user-link"><?= $post->title ?></a>
             </td>
             <td>
-                07/02/2023
+                <?php echo date('d-m-Y', $post->createAt); ?>
             </td>
-            <td class="text-center">
-                <span class="label label-success">Active</span>
-            </td>
+			<?php if($post->status == 1) {?>
+				<td class="text-center">
+					<a href="/admin/actionHidePost/<?= $post->id ?>"><button class="btn btn-success">Show</button></a>
+				</td>
+			<?php  } else { ?>
+				<td class="text-center">
+					<a href="/admin/actionShowPost/<?= $post->id ?>"><button class="btn btn-dark">Hide</button></a>
+				</td>
+			<?php } ?>
+            
             <td style="width: 20%;">
                 <a href="admin/updatePost/<?=$post->id ?>" class="table-link">
                     <span class="fa-stack">
