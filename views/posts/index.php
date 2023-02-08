@@ -5,12 +5,12 @@
 				<div class="col-lg-4 col-md-12 mb-4">
 					<div class="card">
 						<div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-							<a href="/posts/showPost/<?=$post->id ?>">
+							<a href="/posts/showPost/<?=$post->slug ?>">
 								<img src="/assets/images/<?=$post->image ?>" class="img-fluid" />
 							</a>
 							<div class="card-body">
 								<h5 class="card-title"><?= $post->title ?></h5>
-								<a href="/posts/showPost/<?=$post->id ?>" class="btn btn-primary">Read</a>
+								<a href="/posts/showPost/<?=$post->slug ?>" class="btn btn-primary">Read</a>
 							</div>
 						</div>
 					</div>

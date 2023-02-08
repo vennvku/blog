@@ -64,11 +64,22 @@ class AdminController extends BaseController
       }
    } 
 
-   if ($file_name == NULL) {
-    $post = Post::updatePostNoImage($_POST['id'], $_POST["title"], $_POST["content"]);
-   } else {
-     $post = Post::updatePost($_POST['id'], $_POST["title"], $_POST["content"], $file_name);
-   }
+   $delimiter = '-';
+   $slug = strtolower(trim(preg_replace('/[\s-]+/', $delimiter, preg_replace('/[^A-Za-z0-9-]+/', $delimiter, preg_replace('/[&]/', 'and', preg_replace('/[\']/', '', iconv('UTF-8', 'ASCII//TRANSLIT', $_POST['title']))))), $delimiter));
+
+  	$allPost = Post::all();
+
+	foreach($allPost as $post) {
+		if($post->slug == $slug) {
+			return header('Location: /admin');
+		}
+	}
+
+	if ($file_name == NULL) {
+		$post = Post::updatePostNoImage($_POST['id'], $_POST["title"], $slug, $_POST["content"]);
+	} else {
+		$post = Post::updatePost($_POST['id'], $_POST["title"], $slug, $_POST["content"], $file_name);
+	}
 
     return header('Location: /admin');
   }
@@ -98,7 +109,7 @@ class AdminController extends BaseController
       $expensions= array("jpeg","jpg","png");
       
       if(in_array($file_ext,$expensions)=== false){
-         $errors[]="Chỉ hỗ trợ tải lên JPEG hoặc PNG.";
+         $errors[]="Chỉ hỗ trợ tải lên JPEG hoặc JPG hoặc PNG.";
       }
       
       if($file_size > 2097152){
@@ -120,13 +131,25 @@ class AdminController extends BaseController
         }
          
       }else{
+        $file_name = 'no-image.jpg';
          print_r($errors);
       }
-   }
+   } 
 
    $timestamp = strtotime(date("d-m-Y"));
 
-    $post = Post::insertPost($_POST['title'], $_POST['content'], $file_name, $timestamp);
+   $delimiter = '-';
+   $slug = strtolower(trim(preg_replace('/[\s-]+/', $delimiter, preg_replace('/[^A-Za-z0-9-]+/', $delimiter, preg_replace('/[&]/', 'and', preg_replace('/[\']/', '', iconv('UTF-8', 'ASCII//TRANSLIT', $_POST['title']))))), $delimiter));
+
+  $allPost = Post::all();
+
+  foreach($allPost as $post) {
+    if($post->slug == $slug) {
+      return header('Location: /admin');
+    }
+  }
+   
+   $post = Post::insertPost($_POST['title'], $slug, $_POST['content'], $file_name, $timestamp);
     return header('Location: /admin');
   }
 

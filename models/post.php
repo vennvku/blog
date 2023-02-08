@@ -48,19 +48,32 @@ class Post
     return null;
   }
 
-  static function updatePost($id, $title, $content, $fileName)
+  static function findPostUI($id)
   {
     $db = DB::getInstance();
-    $req = $db->prepare("UPDATE posts SET title = '".$title."', content = '".$content."', image = '".$fileName."' WHERE id = '".$id."'");
+    $req = $db->prepare('SELECT * FROM posts WHERE slug = :slug');
+    $req->execute(array('slug' => $id));
+
+    $item = $req->fetch();
+    if (isset($item['id'])) {
+      return new Post($item['id'], $item['title'], $item['slug'], $item['content'], $item['image'], $item['view'], $item['status'], $item['createAt']);
+    }
+    return null;
+  }
+
+  static function updatePost($id, $title, $slug, $content, $fileName)
+  {
+    $db = DB::getInstance();
+    $req = $db->prepare("UPDATE posts SET title = '".$title."', slug = '".$slug."', content = '".$content."', image = '".$fileName."' WHERE id = '".$id."'");
     $req->execute();
 
     return "Successfull";
   }
 
-  static function updatePostNoImage($id, $title, $content)
+  static function updatePostNoImage($id, $title, $slug, $content)
   {
     $db = DB::getInstance();
-    $req = $db->prepare("UPDATE posts SET title = '".$title."', content = '".$content."' WHERE id = '".$id."'");
+    $req = $db->prepare("UPDATE posts SET title = '".$title."', slug = '".$slug."', content = '".$content."' WHERE id = '".$id."'");
     $req->execute();
 
     return "Successfull";
@@ -77,12 +90,12 @@ class Post
     return "Successfull";
   }
 
-  static function insertPost($title, $content, $fileName, $timestamp)
+  static function insertPost($title, $slug, $content, $fileName, $timestamp)
   {
 
     $db = DB::getInstance();
-    $req = $db->prepare("INSERT INTO posts (title, content, image, view, status, createAt) 
-                          VALUES ('".$title."', '".$content."', '".$fileName."', 0, 1, '".$timestamp."') ");
+    $req = $db->prepare("INSERT INTO posts (title, slug, content, image, view, status, createAt) 
+                          VALUES ('".$title."', '".$slug."', '".$content."', '".$fileName."', 0, 1, '".$timestamp."') ");
     $req->execute();
 
     return "Successfull";
